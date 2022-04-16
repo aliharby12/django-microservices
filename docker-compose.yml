@@ -15,3 +15,18 @@ services:
       - ./polls/:/code/polls
     ports:
       - "8001:8001"
+  
+  questions_app:
+    image: questions_app
+    container_name: questions
+    build: ./questions
+    command: >
+      sh -c "python questions/manage.py makemigrations
+      && python questions/manage.py migrate
+      && python questions/manage.py runserver 0.0.0.0:8002"
+    env_file:
+      - ./questions/.env
+    volumes:
+      - ./questions/:/code/questions
+    ports:
+      - "8002:8002"
