@@ -30,3 +30,18 @@ services:
       - ./questions/:/code/questions
     ports:
       - "8002:8002"
+  
+  votes_app:
+    image: votes_app
+    container_name: votes
+    build: ./votes
+    command: >
+      sh -c "python votes/manage.py makemigrations
+      && python votes/manage.py migrate
+      && python votes/manage.py runserver 0.0.0.0:8003"
+    env_file:
+      - ./votes/.env
+    volumes:
+      - ./votes/:/code/votes
+    ports:
+      - "8003:8003"
