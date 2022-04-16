@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  polls_app:
+    image: polls_app
+    container_name: polls
+    build: ./polls
+    command: >
+      sh -c "python polls/manage.py makemigrations
+      && python polls/manage.py migrate
+      && python polls/manage.py runserver 0.0.0.0:8001"
+    env_file:
+      - ./polls/.env
+    volumes:
+      - ./polls/:/code/polls
+    ports:
+      - "8001:8001"
