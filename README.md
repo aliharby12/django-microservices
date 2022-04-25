@@ -26,7 +26,10 @@ Configuration is handled by environment variables, for development purpose you j
 Endpoints
 --------
 to run project services endpoints:
-
 * polls endpints under: http://0.0.0.0:8001/docs/
 * questions endpints under: http://0.0.0.0:8002/docs/
 * votes endpints under: http://0.0.0.0:8003/docs/
+
+to add a superuser for any service:
+
+    $ docker-compose run <container_name> sh -c "python <container_folder>/manage.py createsuperuser"

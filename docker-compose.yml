@@ -12,7 +12,7 @@ services:
     command: >
       sh -c "python polls/manage.py makemigrations
       && python polls/manage.py migrate
-      && python polls/manage.py runserver 0.0.0.0:8001"
+      && python polls/manage.py runserver 127.0.0.1:8001"
     env_file:
       - ./polls/.env
     volumes:
@@ -33,7 +33,7 @@ services:
     command: >
       sh -c "python questions/manage.py makemigrations
       && python questions/manage.py migrate
-      && python questions/manage.py runserver 0.0.0.0:8002"
+      && python questions/manage.py runserver 127.0.0.1:8002"
     env_file:
       - ./questions/.env
     volumes:
@@ -54,7 +54,7 @@ services:
     command: >
       sh -c "python votes/manage.py makemigrations
       && python votes/manage.py migrate
-      && python votes/manage.py runserver 0.0.0.0:8003"
+      && python votes/manage.py runserver 127.0.0.1:8003"
     env_file:
       - ./votes/.env
     volumes:
