@@ -5,9 +5,9 @@ Overview
 --------
 We have 3 docker containers:
 
-    * **polls**: runs the polls service
-    * **questions**: runs the questions service
-    * **votes**: runs the votes service
+* polls: runs the polls service
+* questions: runs the questions service
+* votes: runs the votes service
 Requirements
 ------------
 * docker
@@ -15,7 +15,6 @@ Requirements
 
 Usage
 -----
-.. code-block:: console
 
     $ docker-compose up
 
@@ -27,6 +26,6 @@ Endpoints
 --------
 to run project services endpoints:
 
-    * **polls endpints under**: http://0.0.0.0:8001/docs
-    * **questions endpints under**: http://0.0.0.0:8002/docs
-    * **votes endpints under**: http://0.0.0.0:8003/docs
+* polls endpints under: http://0.0.0.0:8001/docs
+* questions endpints under: http://0.0.0.0:8002/docs
+* votes endpints under: http://0.0.0.0:8003/docs
