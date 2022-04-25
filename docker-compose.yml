@@ -5,6 +5,10 @@ services:
     image: polls_app
     container_name: polls
     build: ./polls
+    environment:
+      - POSTGRES_NAME=poll_postgres
+      - POSTGRES_USER=poll_postgres
+      - POSTGRES_PASSWORD=poll_postgres
     command: >
       sh -c "python polls/manage.py makemigrations
       && python polls/manage.py migrate
@@ -15,11 +19,17 @@ services:
       - ./polls/:/code/polls
     ports:
       - "8001:8001"
+    depends_on:
+      - poll_db
   
   questions_app:
     image: questions_app
     container_name: questions
     build: ./questions
+    environment:
+      - POSTGRES_NAME=qs_postgres
+      - POSTGRES_USER=qs_postgres
+      - POSTGRES_PASSWORD=qs_postgres
     command: >
       sh -c "python questions/manage.py makemigrations
       && python questions/manage.py migrate
@@ -30,11 +40,17 @@ services:
       - ./questions/:/code/questions
     ports:
       - "8002:8002"
+    depends_on:
+      - qs_db
   
   votes_app:
     image: votes_app
     container_name: votes
     build: ./votes
+    environment:
+      - POSTGRES_NAME=vote_postgres
+      - POSTGRES_USER=vote_postgres
+      - POSTGRES_PASSWORD=vote_postgres
     command: >
       sh -c "python votes/manage.py makemigrations
       && python votes/manage.py migrate
@@ -45,3 +61,32 @@ services:
       - ./votes/:/code/votes
     ports:
       - "8003:8003"
+    depends_on:
+      - vote_db
+
+  poll_db:
+    image: postgres
+    volumes:
+      - ./poll_data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=poll_postgres
+      - POSTGRES_USER=poll_postgres
+      - POSTGRES_PASSWORD=poll_postgres
+  
+  qs_db:
+    image: postgres
+    volumes:
+      - ./qs_data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=qs_postgres
+      - POSTGRES_USER=qs_postgres
+      - POSTGRES_PASSWORD=qs_postgres
+
+  vote_db:
+    image: postgres
+    volumes:
+      - ./vote_data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=vote_postgres
+      - POSTGRES_USER=vote_postgres
+      - POSTGRES_PASSWORD=vote_postgres

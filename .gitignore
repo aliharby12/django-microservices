@@ -29,6 +29,10 @@ MANIFEST
 
 migrations/
 
+# databases
+poll_data/
+qs_data/
+vote_data/
 .dbdata/
 
 # PyInstaller
